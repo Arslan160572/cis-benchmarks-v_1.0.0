@@ -628,12 +628,12 @@ def main():
     if not args.disable_tcp_wrappers:
         configure_tcp_wrappers(args.clients)
     disable_uncommon_protocols()
-    if not args.disable_iptables:
-        configure_iptables()
+#    if not args.disable_iptables:
+#        configure_iptables()
 
     # 4 Logging and Auditing
-    configure_rsyslog()
-    configure_log_file_permissions()
+#    configure_rsyslog()
+#    configure_log_file_permissions()
 
     # 5 Access, Authentication and Authorization
     configure_cron()
