@@ -559,26 +559,12 @@ def missing_rules():
 #        'grub2-mkconfig -o /boot/grub2/grub.cfg'
 #    ])
     #4.1.4
+    PropertyFile('etc/audit/audit.rules', ' ').override({
+       '-a always,exit -F arch=b64 -S adjtimex -S settimeofday -k time-change'
+        
+    }).write()
 
-    with open('/etc/audit/audit.rules', 'w') as f:
-        f.write('-a always,exit -F arch=b64 -S adjtimex -S settimeofday -k time-change')
-        f.write('-a always,exit -F arch=b64 -S adjtimex -S settimeofday -k time-change')
-        f.write('-a always,exit -F arch=b32 -S adjtimex -S settimeofday -S stime -k timechange')
-        f.write('-a always,exit -F arch=b64 -S clock_settime -k time-change')
-        f.write('-a always,exit -F arch=b32 -S clock_settime -k time-change')
-        f.write('-w /etc/localtime -p wa -k time-change')
-
-    #4.1.5
-
-    with open(' /etc/audit/rules.d/audit.rules','w') as f:
-        f.write('-w /etc/group -p wa -k identity')    
-        f.write('-w /etc/passwd -p wa -k identity')
-        f.write('-w /etc/gshadow -p wa -k identity')
-        f.write('-w /etc/shadow -p wa -k identity')
-        f.write('-w /etc/security/opasswd -p wa -k identity')
-
-
-
+    
 
 def main():
     parser = argparse.ArgumentParser(
