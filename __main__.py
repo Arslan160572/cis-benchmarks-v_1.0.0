@@ -559,7 +559,7 @@ def missing_rules():
         'chmod +rw /etc/audit/audit.rules'
     ])
     #4.1.4
-    with open('/etc/audit/audit.rules', 'w') as f:
+    with open('/etc/audit/audit.rules', 'a') as f:
         f.write('-a always,exit -F arch=b64 -S adjtimex -S settimeofday -k time-change')
         f.write('-a always,exit -F arch=b64 -S adjtimex -S settimeofday -k time-change')
         f.write('-a always,exit -F arch=b32 -S adjtimex -S settimeofday -S stime -k timechange')
