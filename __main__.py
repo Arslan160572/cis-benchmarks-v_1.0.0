@@ -548,6 +548,34 @@ def configure_su():
         'chmod 000 /etc/gshadow'
 
     ])
+    
+def missing_rules():
+    PropertyFile('/etc/default/grub', ' ').override({
+        'GRUB_CMDLINE_LINUX':'"audit=1"'
+        
+    }).write()
+
+    exec_shell([
+        'grub2-mkconfig -o /boot/grub2/grub.cfg'
+    ])
+    #4.1.4
+
+    with open('/etc/audit/audit.rules', 'w') as f:
+        f.write('-a always,exit -F arch=b64 -S adjtimex -S settimeofday -k time-change')
+        f.write('-a always,exit -F arch=b64 -S adjtimex -S settimeofday -k time-change')
+        f.write('-a always,exit -F arch=b32 -S adjtimex -S settimeofday -S stime -k timechange')
+        f.write('-a always,exit -F arch=b64 -S clock_settime -k time-change')
+        f.write('-a always,exit -F arch=b32 -S clock_settime -k time-change')
+        f.write('-w /etc/localtime -p wa -k time-change')
+
+    #4.1.5
+
+    with open(' /etc/audit/rules.d/audit.rules','w') as f:
+        f.write('-w /etc/group -p wa -k identity')    
+        f.write('-w /etc/passwd -p wa -k identity')
+        f.write('-w /etc/gshadow -p wa -k identity')
+        f.write('-w /etc/shadow -p wa -k identity')
+        f.write('-w /etc/security/opasswd -p wa -k identity')
 
 
 
@@ -643,6 +671,7 @@ def main():
     configure_password_parmas()
     configure_umask()
     configure_su()
+    missing_rules()
 
 
 if __name__ == '__main__':
