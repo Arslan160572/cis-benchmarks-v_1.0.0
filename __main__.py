@@ -555,9 +555,9 @@ def missing_rules():
         
 #    }).write()
 
-#    exec_shell([
-#        'grub2-mkconfig -o /boot/grub2/grub.cfg'
-#    ])
+    exec_shell([
+        'chmod +rw /etc/audit/audit.rules'
+    ])
     #4.1.4
     with open('/etc/audit/audit.rules', 'w') as f:
         f.write('-a always,exit -F arch=b64 -S adjtimex -S settimeofday -k time-change')
@@ -569,12 +569,7 @@ def missing_rules():
 
     #4.1.5
 
-    with open(' /etc/audit/rules.d/audit.rules','w') as f:
-        f.write('-w /etc/group -p wa -k identity')    
-        f.write('-w /etc/passwd -p wa -k identity')
-        f.write('-w /etc/gshadow -p wa -k identity')
-        f.write('-w /etc/shadow -p wa -k identity')
-        f.write('-w /etc/security/opasswd -p wa -k identity')
+    
 
     
 
