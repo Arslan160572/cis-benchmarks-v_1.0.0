@@ -550,14 +550,14 @@ def configure_su():
     ])
     
 def missing_rules():
-    PropertyFile('/etc/default/grub', ' ').override({
-        'GRUB_CMDLINE_LINUX':'"audit=1"'
+#    PropertyFile('/etc/default/grub', ' ').override({
+#       'GRUB_CMDLINE_LINUX':'"audit=1"'
         
-    }).write()
+#    }).write()
 
-    exec_shell([
-        'grub2-mkconfig -o /boot/grub2/grub.cfg'
-    ])
+#    exec_shell([
+#        'grub2-mkconfig -o /boot/grub2/grub.cfg'
+#    ])
     #4.1.4
 
     with open('/etc/audit/audit.rules', 'w') as f:
