@@ -559,10 +559,7 @@ def missing_rules():
 #        'grub2-mkconfig -o /boot/grub2/grub.cfg'
 #    ])
     #4.1.4
-    PropertyFile('etc/audit/audit.rules', ' ').override({
-       '-a always,exit -F arch=b64 -S adjtimex -S settimeofday -k time-change'
-        
-    }).write()
+    PropertyFile('etc/audit/audit.rules', ' ').override().write('-a always,exit -F arch=b64 -S adjtimex -S settimeofday -k time-change')
 
     
 
