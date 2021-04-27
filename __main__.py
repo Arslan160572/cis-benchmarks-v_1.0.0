@@ -576,7 +576,7 @@ def missing_rules():
         'chmod +rw /etc/audit/rules.d/audit.rules'
     ])
 
-    with open(' /etc/audit/rules.d/audit.rules','a') as f:
+    with open('/etc/audit/rules.d/audit.rules','a') as f:
         f.write('-w /etc/group -p wa -k identity \n')    
         f.write('-w /etc/passwd -p wa -k identity \n')
         f.write('-w /etc/gshadow -p wa -k identity \n')
