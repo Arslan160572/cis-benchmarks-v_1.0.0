@@ -555,19 +555,81 @@ def missing_rules():
         
 #    }).write()
 
-    exec_shell([
+    #4.1.4
+
+     exec_shell([
         'chmod +rw /etc/audit/audit.rules'
     ])
-    #4.1.4
+
     with open('/etc/audit/audit.rules', 'a') as f:
         f.write('-a always,exit -F arch=b64 -S adjtimex -S settimeofday -k time-change \n')
-        f.write('-a always,exit -F arch=b64 -S adjtimex -S settimeofday -k time-change')
-        f.write('-a always,exit -F arch=b32 -S adjtimex -S settimeofday -S stime -k timechange')
-        f.write('-a always,exit -F arch=b64 -S clock_settime -k time-change')
-        f.write('-a always,exit -F arch=b32 -S clock_settime -k time-change')
-        f.write('-w /etc/localtime -p wa -k time-change')
+        f.write('-a always,exit -F arch=b64 -S adjtimex -S settimeofday -k time-change \n')
+        f.write('-a always,exit -F arch=b32 -S adjtimex -S settimeofday -S stime -k timechange \n')
+        f.write('-a always,exit -F arch=b64 -S clock_settime -k time-change \n')
+        f.write('-a always,exit -F arch=b32 -S clock_settime -k time-change \n')
+        f.write('-w /etc/localtime -p wa -k time-change \n')
 
-    #4.1.5
+    #4.1.5-5.1.11
+     exec_shell([
+        'chmod +rw /etc/audit/rules.d/audit.rules'
+    ])
+
+    with open(' /etc/audit/rules.d/audit.rules','a') as f:
+        f.write('-w /etc/group -p wa -k identity \n')    
+        f.write('-w /etc/passwd -p wa -k identity \n')
+        f.write('-w /etc/gshadow -p wa -k identity \n')
+        f.write('-w /etc/shadow -p wa -k identity \n')
+        f.write('-w /etc/security/opasswd -p wa -k identity \n')
+        f.write('-a always,exit -F arch=b64 -S sethostname -S setdomainname -k system-locale \n')
+        f.write('-a always,exit -F arch=b32 -S sethostname -S setdomainname -k system-locale \n')
+        f.write('-w /etc/issue -p wa -k system-locale \n')
+        f.write('-w /etc/issue.net -p wa -k system-locale \n')
+        f.write('-w /etc/hosts -p wa -k system-locale \n')
+        f.write('-w /etc/sysconfig/network -p wa -k system-locale \n')
+        f.write('-w /etc/sysconfig/network-scripts/ -p wa -k system-locale \n')
+        f.write('-w /etc/selinux/ -p wa -k MAC-policy \n')
+        f.write('-w /usr/share/selinux/ -p wa -k MAC-policy \n')
+        f.write('-w /var/log/lastlog -p wa -k logins \n')
+        f.write('-w /var/run/faillock/ -p wa -k logins \n')
+        f.write('-w /var/run/utmp -p wa -k session \n')
+        f.write('-w /var/log/wtmp -p wa -k logins \n')
+        f.write('-w /var/log/btmp -p wa -k logins \n')
+        f.write('-a always,exit -F arch=b64 -S chmod -S fchmod -S fchmodat -F auid>=1000 -F auid!=4294967295 -k perm_mod \n')
+        f.write('-a always,exit -F arch=b64 -S chmod -S fchmod -S fchmodat -F auid>=1000 -F auid!=4294967295 -k perm_mod \n')
+        f.write('-a always,exit -F arch=b32 -S chmod -S fchmod -S fchmodat -F auid>=1000 -F auid!=4294967295 -k perm_mod \n')
+        f.write('-a always,exit -F arch=b64 -S chown -S fchown -S fchownat -S lchown -F auid>=1000 -F auid!=4294967295 -k perm_mod \n')
+        f.write('-a always,exit -F arch=b32 -S chown -S fchown -S fchownat -S lchown -F auid>=1000 -F auid!=4294967295 -k perm_mod \n')
+        f.write('-a always,exit -F arch=b64 -S setxattr -S lsetxattr -S fsetxattr -S removexattr -S lremovexattr -S fremovexattr -F auid>=1000 -F auid!=4294967295 -k perm_mod \n')
+        f.write('-a always,exit -F arch=b32 -S setxattr -S lsetxattr -S fsetxattr -S removexattr -S lremovexattr -S fremovexattr -F auid>=1000 -F auid!=4294967295 -k perm_mod \n')
+        f.write('-a always,exit -F arch=b64 -S creat -S open -S openat -S truncate -S ftruncate -F exit=-EACCES -F auid>=1000 -F auid!=4294967295 -k access \n')
+        f.write('-a always,exit -F arch=b32 -S creat -S open -S openat -S truncate -S ftruncate -F exit=-EACCES -F auid>=1000 -F auid!=4294967295 -k access \n')
+        f.write('-a always,exit -F arch=b64 -S creat -S open -S openat -S truncate -S ftruncate -F exit=-EPERM -F auid>=1000 -F auid!=4294967295 -k access \n')
+        f.write('-a always,exit -F arch=b32 -S creat -S open -S openat -S truncate -S ftruncate -F exit=-EPERM -F auid>=1000 -F auid!=4294967295 -k access \n')
+        f.write('-a always,exit -F arch=b64 -S mount -F auid>=1000 -F auid!=4294967295 -k mounts \n')
+        f.write('-a always,exit -F arch=b32 -S mount -F auid>=1000 -F auid!=4294967295 -k mounts \n')
+        f.write('-a always,exit -F arch=b64 -S unlink -S unlinkat -S rename -S renameat -F auid>=1000 -F auid!=4294967295 -k delete \n')
+        f.write('-a always,exit -F arch=b32 -S unlink -S unlinkat -S rename -S renameat -F auid>=1000 -F auid!=4294967295 -k delete \n')
+        f.write('-w /etc/sudoers -p wa -k scope \n')
+        f.write('-w /etc/sudoers.d/ -p wa -k scope \n')
+        f.write('-w /var/log/sudo.log -p wa -k actions \n')
+        f.write('-w /sbin/insmod -p x -k modules \n')
+        f.write('-w /sbin/rmmod -p x -k modules \n')
+        f.write('-w /sbin/modprobe -p x -k modules \n')
+        f.write('-a always,exit -F arch=b64 -S init_module -S delete_module -k modules \n')
+        f.write('-e 2 \n')
+
+    #4.1.1.2-4.1.1.3
+
+    exec_shell([
+        'chmod +rw /etc/audit/auditd.conf'
+    ])
+
+    PropertyFile('/etc/audit/auditd.conf', '\t').override({
+        'space_left_action': 'email',
+        'action_mail_acct': 'root',
+        'admin_space_left_action': 'halt',
+        'max_log_file_action': 'keep_logs'
+    }).write()
 
     
 
