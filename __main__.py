@@ -626,7 +626,7 @@ def missing_rules():
         'chmod +rw /etc/audit/auditd.conf'
     ])
 
-    PropertyFile('/etc/audit/auditd.conf', '\t').override({
+    PropertyFile('/etc/audit/auditd.conf','=').override({
         'space_left_action': 'email',
         'action_mail_acct': 'root',
         'admin_space_left_action': 'halt',
