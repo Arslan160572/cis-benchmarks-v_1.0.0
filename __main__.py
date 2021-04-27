@@ -554,6 +554,14 @@ def missing_rules():
 #       'GRUB_CMDLINE_LINUX':'"audit=1"'
         
 #    }).write()
+    
+
+    with open('/etc/default/grub','a') as f:
+        f.write('GRUB_CMDLINE_LINUX="audit=1" \n')   
+    
+    exec_shell([
+        'grub2-mkconfig -o /boot/grub2/grub.cfg'
+    ])
 
     #4.1.4
 
