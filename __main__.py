@@ -560,7 +560,7 @@ def missing_rules():
     ])
     #4.1.4
     with open('/etc/audit/audit.rules', 'a') as f:
-        f.write('-a always,exit -F arch=b64 -S adjtimex -S settimeofday -k time-change')
+        f.write('-a always,exit -F arch=b64 -S adjtimex -S settimeofday -k time-change \n')
         f.write('-a always,exit -F arch=b64 -S adjtimex -S settimeofday -k time-change')
         f.write('-a always,exit -F arch=b32 -S adjtimex -S settimeofday -S stime -k timechange')
         f.write('-a always,exit -F arch=b64 -S clock_settime -k time-change')
