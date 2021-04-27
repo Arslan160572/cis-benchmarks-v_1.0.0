@@ -557,7 +557,7 @@ def missing_rules():
 
     #4.1.4
 
-     exec_shell([
+    exec_shell([
         'chmod +rw /etc/audit/audit.rules'
     ])
 
@@ -570,7 +570,7 @@ def missing_rules():
         f.write('-w /etc/localtime -p wa -k time-change \n')
 
     #4.1.5-5.1.11
-     exec_shell([
+    exec_shell([
         'chmod +rw /etc/audit/rules.d/audit.rules'
     ])
 
