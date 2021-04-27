@@ -627,10 +627,10 @@ def missing_rules():
     ])
 
     PropertyFile('/etc/audit/auditd.conf','=').override({
-        'space_left_action': 'email',
-        'action_mail_acct': 'root',
-        'admin_space_left_action': 'halt',
-        'max_log_file_action': 'keep_logs'
+        'space_left_action ': 'email',
+        'action_mail_acct ': 'root',
+        'admin_space_left_action ': 'halt',
+        'max_log_file_action ': 'keep_logs'
     }).write()
 
     
