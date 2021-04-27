@@ -558,7 +558,9 @@ def missing_rules():
     #4.1.4
 
     exec_shell([
-        'chmod +rw /etc/audit/audit.rules'
+        'chmod +rw /etc/audit/audit.rules',
+        'chmod +rw /etc/audit/rules.d/audit.rules',
+         'chmod +rw /etc/audit/auditd.conf'
     ])
 
     with open('/etc/audit/audit.rules', 'a') as f:
