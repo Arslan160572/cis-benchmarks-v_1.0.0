@@ -550,12 +550,8 @@ def configure_su():
     ])
     
 def missing_rules():
-#    PropertyFile('/etc/default/grub', ' ').override({
-#       'GRUB_CMDLINE_LINUX':'"audit=1"'
-        
-#    }).write()
     
-
+    #4.1.3
     with open('/etc/default/grub','a') as f:
         f.write('\nGRUB_CMDLINE_LINUX="audit=1" \n')   
     
