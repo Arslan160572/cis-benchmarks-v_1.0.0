@@ -378,7 +378,7 @@ def configure_rsyslog():
 def configure_log_file_permissions():
     """4.2.4 Ensure permissions on all logfiles are configured"""
 
-    exec_shell([r'find /var/log -type f -exec chmod g-wx,o-rwx {} +'])
+    exec_shell([r'sudo find /var/log -type f -exec chmod g-wx,o-rwx {} +'])
 
 
 def configure_cron():
