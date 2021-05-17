@@ -731,7 +731,7 @@ def main():
         configure_pam()
     configure_password_parmas()
     configure_umask()
-    configure_su()
+   # configure_su()
     missing_rules()
 
 
