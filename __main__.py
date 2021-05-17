@@ -437,7 +437,7 @@ def configure_sshd():
         'ClientAliveCountMax': '0',
         'LoginGraceTime': '120',
         'AllowUsers': 'ec2-user',
-        'Banner': '/etc/issue.net'
+        'Banner': '/etc/ssh/banner'
     }).write()
 
 
