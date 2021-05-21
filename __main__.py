@@ -699,7 +699,7 @@ def main():
     enable_aide()
     secure_boot_settings()
     apply_process_hardenings()
-    configure_warning_banners()
+#    configure_warning_banners()
     ensure_updated()
 
     # 2 Services
