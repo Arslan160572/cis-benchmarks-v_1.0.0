@@ -525,8 +525,8 @@ def configure_umask():
 
 def configure_su():
     """5.5 Ensure access to the su command is restricted"""
-    File('/etc/pam.d/su').write(get_string_asset('/etc/pam.d/su'))
-    exec_shell('usermod -aG wheel root')
+#    File('/etc/pam.d/su').write(get_string_asset('/etc/pam.d/su'))
+#    exec_shell('usermod -aG wheel root')
 
     """6.1.2---6.1.9"""
     exec_shell([
@@ -730,8 +730,8 @@ def main():
     if not args.disable_pam:
         configure_pam()
     configure_password_parmas()
-    configure_umask()
-   # configure_su()
+  #  configure_umask()
+    configure_su()
     missing_rules()
 
 
