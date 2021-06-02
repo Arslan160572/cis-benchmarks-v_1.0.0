@@ -566,6 +566,9 @@ def missing_rules():
         'chmod +rw /etc/audit/rules.d/audit.rules',
          'chmod +rw /etc/audit/auditd.conf'
     ])
+    exec_shell([
+        'chmod +rw /etc/audit/audit.rules'
+    ])
 
     with open('/etc/audit/audit.rules', 'a') as f:
         f.write('-a always,exit -F arch=b64 -S adjtimex -S settimeofday -k time-change \n')
@@ -722,7 +725,7 @@ def main():
 
     # 4 Logging and Auditing
 #    configure_rsyslog()
-#    configure_log_file_permissions()
+    configure_log_file_permissions()
 
     # 5 Access, Authentication and Authorization
     configure_cron()
